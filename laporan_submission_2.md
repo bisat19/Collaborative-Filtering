@@ -192,9 +192,60 @@ For SVD, for book "Exclusive" direkomendasikan 5 buku berikut:
 ```
 
 ## Evaluation
-Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
+Pada tahap ini, proyek melakukan evaluasi terhadap performa sistem rekomendasi yang dibangun menggunakan metrik yang sesuai dengan konteks dan tujuan.
 
-Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, problem statement, dan solusi yang diinginkan.
+### Metrik Evaluasi: Precision@K
+Metrik utama yang digunakan dalam proyek ini adalah Precision@K, khususnya Precision@5, yang mengukur proporsi item yang direkomendasikan dan benar-benar relevan bagi pengguna. Ini sangat penting dalam konteks top-N recommendation, di mana sistem hanya perlu menampilkan sejumlah kecil rekomendasi terbaik.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
+### Formula dan Cara Kerja
+Precision@K didefinisikan sebagai: 
+
+$$Precision@K = (|Recommended Items ∩ Relevant Items|) / K$$
+
+- Recommended Items: daftar item (buku) yang direkomendasikan oleh sistem (misalnya Top-5).
+- Relevant Items: item yang benar-benar disukai oleh pengguna, berdasarkan interaksi historis (dalam hal ini, data uji).
+- K: jumlah item yang direkomendasikan (dalam proyek ini, K = 5).
+
+Evaluasi dilakukan hanya pada pengguna yang muncul dalam data latih (train set), untuk memastikan sistem memiliki informasi sebelumnya tentang pengguna.
+
+### Hasil Evaluasi
+
+| Model                          | Precision@5 |
+|-------------------------------|-------------|
+| KNN Collaborative Filtering   | 0.0119      |
+| SVD + KNN (Hybrid)            | 0.0091      |
+
+Berdasarkan hasil evaluasi, model **KNN Collaborative Filtering** sedikit lebih unggul dalam hal relevansi rekomendasi dibandingkan pendekatan hybrid SVD + KNN pada dataset ini. Meskipun precision secara keseluruhan masih rendah, hasil ini memberikan gambaran awal terhadap efektivitas pendekatan yang digunakan.
+
+---
+
+### 🔗 Hubungan dengan Problem Statement dan Goals
+
+#### Problem Statement 1:
+**Bagaimana cara merekomendasikan buku yang relevan kepada pengguna berdasarkan interaksi pengguna lain yang serupa?**
+
+➡ Precision@5 menunjukkan *berapa relevan* rekomendasi terhadap preferensi pengguna. Nilai precision memberikan gambaran seberapa baik sistem mengenali item yang mungkin disukai pengguna.
+
+---
+
+#### Problem Statement 2:
+**Bagaimana meningkatkan kualitas rekomendasi menggunakan metode collaborative filtering?**
+
+➡ Meskipun kedua pendekatan masih menghasilkan precision yang relatif rendah, proyek ini menunjukkan proses eksplorasi awal dalam membandingkan dua metode collaborative filtering (KNN dan SVD), sebagai langkah penting menuju sistem yang lebih baik.
+
+---
+
+#### Problem Statement 3:
+**Bagaimana mengevaluasi performa sistem rekomendasi dengan metrik yang sesuai?**
+
+➡ Metrik Precision@K yang digunakan tepat sasaran karena fokus pada relevansi rekomendasi. Ini sangat cocok untuk sistem yang menampilkan sejumlah kecil rekomendasi utama kepada pengguna.
+
+---
+
+### 📌 Kesimpulan Evaluasi
+
+Evaluasi menggunakan Precision@5 menunjukkan bahwa sistem rekomendasi masih memiliki ruang besar untuk peningkatan, terutama dalam konteks relevansi rekomendasi. Namun, perbandingan antara dua pendekatan memberikan wawasan tentang bagaimana preferensi pengguna dapat dimodelkan dengan cara berbeda.
+
+Pengembangan lebih lanjut dapat mencakup eksplorasi algoritma lain, peningkatan preprocessing data, atau penggunaan metrik tambahan seperti Recall@K atau MAP untuk mendapatkan pemahaman yang lebih menyeluruh terhadap performa sistem.
+
+
