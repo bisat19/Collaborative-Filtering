@@ -104,6 +104,7 @@ Eksplorasi Data dan Visualisasi
 Untuk memahami distribusi dan karakteristik awal dari data, dilakukan beberapa tahapan eksplorasi data berikut:
 1. **Distribusi Rating**
    Hal ini dilakukan guna mengetahui distribusi rating yang diberikan kepada pelanggan seperti apa dan dominan ke arah apa.
+
    ![image](https://github.com/user-attachments/assets/65a258a6-67c9-48cc-b27e-fb874bf6ad4b)
 
 ## Data Preparation
