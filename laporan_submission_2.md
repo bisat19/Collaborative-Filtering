@@ -56,6 +56,7 @@ Database ini berisi 3 dataset yakni dataset BX-Book-Ratings.csv, BX-Users.csv, B
 Variabel-variabel pada dataset Book-Crossings adalah sebagai berikut:
 1. `BX-Users.csv` - Informasi Pengguna
 File ini berisi informasi demografis pengguna.
+
 | Nama Kolom | Deskripsi | Contoh Nilai | Catatan |
 |------------|------------------------------------------------------------------------------------|--------------|---------|
 | User-ID    | ID unik untuk setiap pengguna. Dipetakan ke integer dan bersifat anonim. | 276725, 1 | - |
@@ -65,6 +66,7 @@ File ini berisi informasi demografis pengguna.
 
 2. `BX-Books.csv` - Informasi Buku
 File ini berisi detail mengenai setiap buku.
+
 | Nama Kolom      | Deskripsi                                                                 | Contoh Nilai                                                  | Catatan                                                                                  |
 |------------------|---------------------------------------------------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | ISBN            | International Standard Book Number, ID unik untuk setiap buku.            | "0195153448", "0002005018"                                     | ISBN yang tidak valid telah dihapus dari beberapa versi dataset.                        |
@@ -78,6 +80,7 @@ File ini berisi detail mengenai setiap buku.
 
 3. `BX-Book-Ratings.csv` - Informasi Rating Buku
 File ini berisi informasi rating yang diberikan oleh pengguna terhadap buku.
+
 | Nama Kolom    | Deskripsi                                                                                                               | Contoh Nilai                       | Catatan                                           |
 |---------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------|
 | User-ID       | ID unik pengguna yang memberikan rating (merujuk ke BX-Users.csv).                                                      | 276725, 276726                     | -                                                 |
