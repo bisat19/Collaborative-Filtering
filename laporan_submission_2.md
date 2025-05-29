@@ -57,7 +57,7 @@ Variabel-variabel pada dataset Book-Crossings adalah sebagai berikut:
 1. `BX-Users.csv` - Informasi Pengguna
 File ini berisi informasi demografis pengguna.
 | Nama Kolom | Deskripsi | Contoh Nilai | Catatan |
-|------------|-----------|--------------|---------|
+|------------|------------------------------------------------------------------------------------|--------------|---------|
 | User-ID    | ID unik untuk setiap pengguna. Dipetakan ke integer dan bersifat anonim. | 276725, 1 | - |
 | Location   | Lokasi geografis pengguna, biasanya dalam format "kota, provinsi/negara bagian, negara". | "nyc, new york, usa", "stockton, california, usa" | Format dapat bervariasi. |
 | Age        | Usia pengguna. | 34.0, 18.0 | Mengandung banyak nilai NULL/NaN dan beberapa outlier (misalnya, usia > 99 atau < 5) yang memerlukan penanganan. |
