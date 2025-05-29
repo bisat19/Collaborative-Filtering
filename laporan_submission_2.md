@@ -183,7 +183,6 @@ For KNN, for book "Exclusive" direkomendasikan 5 buku berikut:
 ###  2. Model 2: SVD + KNN (Latent Factor Hybrid)
 
 ```
---- SVD Recommendations Example ---
 For SVD, for book "Exclusive" direkomendasikan 5 buku berikut:
 1. Charade (jarak: 0.0202)
 2. Harvest (jarak: 0.0309)
