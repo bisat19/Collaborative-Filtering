@@ -133,11 +133,64 @@ Dataset diubah menjadi format rating triplet (`User-ID`, `Book-Title`, `Rating`)
 Alasan: Ini memungkinkan digunakan untuk algoritma seperti SVD, KNNBasic, dsb.
 
 ## Modeling
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
+Pada bagian ini dilakukan proses pembangunan dan evaluasi model sistem rekomendasi. Model dibangun untuk memberikan Top-N Recommendation bagi setiap pengguna berdasarkan data rating buku. Dua pendekatan algoritma digunakan untuk membandingkan performa dan pendekatannya terhadap permasalahan.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+###  1. Model 1: Item-based KNN Collaborative Filtering
+🔧 Deskripsi
+
+Model pertama menggunakan pendekatan item-based collaborative filtering dengan algoritma K-Nearest Neighbors (KNN). Model mencari kemiripan antar item (buku) berdasarkan pola rating pengguna, kemudian merekomendasikan buku yang mirip dengan yang pernah disukai pengguna.
+
+- Data digunakan dalam bentuk pivot table (`Book-Title` x `User-ID`).
+- Kemiripan dihitung menggunakan metrik cosine similarity.
+
+✅ Kelebihan:
+- Interpretasi mudah karena mirip seperti logika manusia: “jika kamu suka buku A, kamu mungkin suka buku B yang mirip.”
+- Tidak membutuhkan data user baru saat inferensi (bisa langsung berbasis item).
+
+❌ Kekurangan:
+- Tidak bisa merekomendasikan item yang belum pernah diberi rating oleh user mana pun (cold start problem untuk item).
+- Tidak menangkap dimensi laten atau pola implisit yang tersembunyi dalam data.
+
+###  2. Model 2: SVD + KNN (Latent Factor Hybrid)
+🔧 Deskripsi
+Model kedua menggabungkan pendekatan Matrix Factorization (SVD) dengan KNN. Langkahnya adalah:
+- Melatih model SVD untuk mendapatkan vektor laten (latent factors) dari setiap item.
+- Menggunakan hasil vektor laten tersebut sebagai input fitur ke KNN model.
+- Kemudian mencari kemiripan antar item berdasarkan vektor laten.
+
+✅ Kelebihan:
+- Menggabungkan kekuatan model faktorisasi (SVD) untuk menangkap dimensi laten dari interaksi user-item.
+- Lebih baik dalam mengatasi sparsity dan menghasilkan rekomendasi yang personal.
+
+❌ Kekurangan:
+- Interpretasi lebih sulit karena vektor laten tidak langsung bermakna.
+- Membutuhkan lebih banyak pelatihan dan perhitungan.
+
+### Output
+Di sini kita menggunakan judul buku Exclusive sebagai input dan menampilkan 5 buku rekomendasi
+
+###  1. Model 1: Item-based KNN Collaborative Filtering
+
+```
+For KNN, for book "Exclusive" direkomendasikan 5 buku berikut:
+1. Free (jarak: 0.6196)
+2. Breath of Scandal (jarak: 0.6705)
+3. Temple (jarak: 0.6774)
+4. Simisola (jarak: 0.6997)
+5. Monsieur Ibrahim und die Blumen des Koran. ErzÃ?Â¤hlung. (jarak: 0.7310)
+```
+
+###  2. Model 2: SVD + KNN (Latent Factor Hybrid)
+
+```
+--- SVD Recommendations Example ---
+For SVD, for book "Exclusive" direkomendasikan 5 buku berikut:
+1. Charade (jarak: 0.0202)
+2. Harvest (jarak: 0.0309)
+3. Kentucky Sunrise (jarak: 0.0322)
+4. Journey (jarak: 0.0324)
+5. Deadly Grace (jarak: 0.0329)
+```
 
 ## Evaluation
 Pada bagian ini Anda perlu menyebutkan metrik evaluasi yang digunakan. Kemudian, jelaskan hasil proyek berdasarkan metrik evaluasi tersebut.
@@ -146,9 +199,3 @@ Ingatlah, metrik evaluasi yang digunakan harus sesuai dengan konteks data, probl
 
 **Rubrik/Kriteria Tambahan (Opsional)**: 
 - Menjelaskan formula metrik dan bagaimana metrik tersebut bekerja.
-
-**---Ini adalah bagian akhir laporan---**
-
-_Catatan:_
-- _Anda dapat menambahkan gambar, kode, atau tabel ke dalam laporan jika diperlukan. Temukan caranya pada contoh dokumen markdown di situs editor [Dillinger](https://dillinger.io/), [Github Guides: Mastering markdown](https://guides.github.com/features/mastering-markdown/), atau sumber lain di internet. Semangat!_
-- Jika terdapat penjelasan yang harus menyertakan code snippet, tuliskan dengan sewajarnya. Tidak perlu menuliskan keseluruhan kode project, cukup bagian yang ingin dijelaskan saja.
