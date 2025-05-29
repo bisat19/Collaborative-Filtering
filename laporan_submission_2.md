@@ -108,11 +108,29 @@ Untuk memahami distribusi dan karakteristik awal dari data, dilakukan beberapa t
    ![image](https://github.com/user-attachments/assets/65a258a6-67c9-48cc-b27e-fb874bf6ad4b)
 
 ## Data Preparation
-Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
+Sebelum memulai proses pelatihan model, dilakukan beberapa tahap *data preparation* untuk memastikan bahwa data dalam kondisi bersih, lengkap, dan sesuai untuk dianalisis oleh algoritma machine learning.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Menjelaskan proses data preparation yang dilakukan
-- Menjelaskan alasan mengapa diperlukan tahapan data preparation tersebut.
+### 1.  Gabung Dataset Rating dengan Dataset Buku
+
+Menggabungkan data `BX-Book-Ratings` dengan `BX-Books` berdasarkan ISBN dan menghapus kolom-kolom yang tidak diperlukan.
+Tujuan: Untuk mendapatkan data rating yang lengkap dengan judul buku agar bisa digunakan pada proses pivoting dan sistem rekomendasi berbasis judul.
+
+### 2.  Filter Jumlah Minimum Rating
+- Hanya menyertakan buku yang memiliki setidaknya X jumlah rating (misalnya ≥ 30).
+- Hanya menyertakan pengguna yang telah memberikan sejumlah minimum rating (misalnya ≥ 10).
+Alasan: Mengurangi sparsity data. Meningkatkan relevansi hasil rekomendasi. Menghindari pengguna/buku yang tidak signifikan secara statistik.
+
+### 3.  Membuat Pivot Table Rating
+Membentuk pivot table dengan Book-Title sebagai indeks dan User-ID sebagai kolom. Mengisi nilai kosong dengan 0 agar dapat digunakan pada model berbasis KNN.
+Tujuan: Format ini dibutuhkan untuk perhitungan similarity antar item (item-based collaborative filtering).
+
+### 4.  Membagi Data ke Train/Test
+Data pengguna dibagi menjadi train_data dan test_data secara manual. Dalam hal ini data training dan data testing berbanding (80:20)
+Tujuannya agar bisa menghitung Precision@K dan simulasi sistem rekomendasi.
+
+### 5. Transformasi ke Format Library Surprise
+Dataset diubah menjadi format rating triplet (`User-ID`, `Book-Title`, `Rating`). Dibentuk dengan `Dataset.load_from_df(...)` menggunakan Reader dari library Surprise.
+Alasan: Ini memungkinkan digunakan untuk algoritma seperti SVD, KNNBasic, dsb.
 
 ## Modeling
 Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
