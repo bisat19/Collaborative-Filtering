@@ -87,9 +87,24 @@ File ini berisi informasi rating yang diberikan oleh pengguna terhadap buku.
 | ISBN          | ISBN buku yang dirating (merujuk ke BX-Books.csv).                                                                      | "034545104X", "0155061224"         | -                                                 |
 | Book-Rating   | Rating yang diberikan pengguna untuk buku. Rating bersifat eksplisit (1-10) atau implisit (0).                          | 0, 5, 3                            | Rating 0 menunjukkan interaksi implisit.          |
 
+---
+### Kondisi Data
+Sebelum dilakukan pemodelan, dilakukan pemeriksaan terhadap kondisi awal dataset, dengan hasil sebagai berikut:
+- Missing Value:
+   -    Pada file `BX-Users.csv`, kolom Age memiliki sejumlah besar nilai yang hilang (sekitar 39.7% atau lebih).  Nilai-nilai ini seringkali diimputasi menggunakan median         atau mean setelah membersihkan outlier, atau pengguna dengan usia NaN dapat dihapus jika analisis tidak terlalu bergantung pada fitur usia. Pada tahap preparation          nanti, kita tidak akan menggunakan data usia
+   -    Pada file `BX-Books.csv`, kolom Book-Author dan Publisher memiliki data yang hilang sebanyak 2.  Nilai yang hilang pada Book-Author dan          
+        Publisher biasanya diganti dengan string seperti "Unknown" atau modus. Selanjutnya pun, data book-author dan publisher tidak digunakan.
+   -    Pada file `BX-Book-Ratings.csv`, tidak ditemukan nilai yang hilang.
+- Duplikasi:
+  -    Pada ketiga file dataset tidak ditemui duplikasi data
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
+---
+Eksplorasi Data dan Visualisasi
+
+Untuk memahami distribusi dan karakteristik awal dari data, dilakukan beberapa tahapan eksplorasi data berikut:
+1. **Distribusi Rating**
+   Hal ini dilakukan guna mengetahui distribusi rating yang diberikan kepada pelanggan seperti apa dan dominan ke arah apa.
+   ![image](https://github.com/user-attachments/assets/65a258a6-67c9-48cc-b27e-fb874bf6ad4b)
 
 ## Data Preparation
 Pada bagian ini Anda menerapkan dan menyebutkan teknik data preparation yang dilakukan. Teknik yang digunakan pada notebook dan laporan harus berurutan.
