@@ -39,19 +39,50 @@ Perbandingan dilakukan dengan melihat hasil rekomendasi yang dihasilkan oleh mas
 Untuk menjawab pertanyaan dan mencapai tujuan di atas, pendekatan solusi yang digunakan meliputi:
 
 1. **Solusi 1: Collaborative Filtering menggunakan K-Nearest Neighbors (KNN)**
-   Menggunakan algoritma KNN dari pustaka Surprise untuk menghitung kemiripan antar pengguna atau item berdasarkan rating buku.
+   Menggunakan algoritma KNN untuk menghitung kemiripan antar pengguna atau item berdasarkan rating buku.
 2. **Matrix Factorization menggunakan Singular Value Decomposition (SVD)**
    Menggunakan pendekatan SVD untuk mengurai data rating ke dalam dimensi laten, memungkinkan prediksi rating bahkan pada data yang sangat sparse.
 
 ## Data Understanding
-Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
+### Sumber Dataset
+Dataset yang digunakan dalam proyek ini adalah **Book-Crossing: User review ratings**, yang tersedia secara publik melalui platform Kaggle pada tautan berikut:  
+🔗 [Book-Crossing: User review ratings – Kaggle](https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset)
 
-Selanjutnya, uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:  
+Database ini berisi 3 dataset yakni dataset BX-Book-Ratings.csv, BX-Users.csv, BX-Books.csv. Fataset ini tersedia secara publik untuk tujuan penelitian dan merupakan salah satu dataset yang sering digunakan untuk menguji sistem rekomendasi. Dataset ini terdiri dari sekitar 278.858 pengguna anonim, 271.379 buku, dan mencakup 1.149.780 rating (baik eksplisit maupun implisit).  Kondisi data mentah menunjukkan beberapa tantangan seperti nilai yang hilang pada beberapa kolom (misalnya, `Age` pada data pengguna dan Publisher pada data buku) dan format yang tidak konsisten atau tidak valid pada kolom `Year-Of-Publication`.  Dataset ini dikenal memiliki tingkat sparsity yang tinggi, artinya sebagian besar pengguna hanya memberikan rating pada sebagian kecil dari total buku yang tersedia.
 
-Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
-- accepts : merupakan jenis pembayaran yang diterima pada restoran tertentu.
-- cuisine : merupakan jenis masakan yang disajikan pada restoran.
-- dst
+---
+### Fitur dalam Dataset
+
+Variabel-variabel pada dataset Book-Crossings adalah sebagai berikut:
+1. `BX-Users.csv` - Informasi Pengguna
+File ini berisi informasi demografis pengguna.
+| Nama Kolom | Deskripsi | Contoh Nilai | Catatan |
+|------------|-----------|--------------|---------|
+| User-ID    | ID unik untuk setiap pengguna. Dipetakan ke integer dan bersifat anonim. | 276725, 1 | - |
+| Location   | Lokasi geografis pengguna, biasanya dalam format "kota, provinsi/negara bagian, negara". | "nyc, new york, usa", "stockton, california, usa" | Format dapat bervariasi. |
+| Age        | Usia pengguna. | 34.0, 18.0 | Mengandung banyak nilai NULL/NaN dan beberapa outlier (misalnya, usia > 99 atau < 5) yang memerlukan penanganan. |
+
+
+2. `BX-Books.csv` - Informasi Buku
+File ini berisi detail mengenai setiap buku.
+| Nama Kolom      | Deskripsi                                                                 | Contoh Nilai                                                  | Catatan                                                                                  |
+|------------------|---------------------------------------------------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| ISBN            | International Standard Book Number, ID unik untuk setiap buku.            | "0195153448", "0002005018"                                     | ISBN yang tidak valid telah dihapus dari beberapa versi dataset.                        |
+| Book-Title      | Judul buku.                                                               | "Classical Mythology", "Clara Callan"                          | -                                                                                        |
+| Book-Author     | Penulis buku. Jika ada beberapa penulis, hanya yang pertama yang dicantumkan. | "Mark P. O. Morford", "Richard Bruce Wright"               | Mengandung sedikit nilai NULL.                                                          |
+| Year-Of-Publication | Tahun publikasi buku.                                                 | 2002, 2001                                                     | Mengandung beberapa nilai tidak valid seperti 0 atau string nama penerbit.              |
+| Publisher       | Penerbit buku.                                                            | "Oxford University Press", "HarperFlamingo Canada"            | Mengandung sedikit nilai NULL.                                                          |
+| Image-URL-S     | URL ke gambar sampul buku ukuran kecil.                                   | http://images.amazon.com/...S.jpg                              | Umumnya tidak digunakan untuk collaborative filtering dan dapat dihapus.                |
+| Image-URL-M     | URL ke gambar sampul buku ukuran sedang.                                  | http://images.amazon.com/...M.jpg                              | Umumnya tidak digunakan untuk collaborative filtering dan dapat dihapus.                |
+| Image-URL-L     | URL ke gambar sampul buku ukuran besar.                                   | http://images.amazon.com/...L.jpg                              | Umumnya tidak digunakan untuk collaborative filtering dan dapat dihapus.                |
+
+3. `BX-Book-Ratings.csv` - Informasi Rating Buku
+File ini berisi informasi rating yang diberikan oleh pengguna terhadap buku.
+| Nama Kolom   | Deskripsi                                                                                          | Contoh Nilai                       | Catatan                                           |
+|--------------|----------------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------|
+| User-ID      | ID unik pengguna yang memberikan rating (merujuk ke BX-Users.csv).                                | 276725, 276726                     | -                                                 |
+| ISBN         | ISBN buku yang dirating (merujuk ke BX-Books.csv).                                                | "034545104X", "0155061224"         | -                                                 |
+| Book-Rating  | Rating yang diberikan pengguna untuk buku. Rating bersifat eksplisit (skala 1-10, nilai lebih tinggi menunjukkan apresiasi lebih tinggi) atau implisit (dinyatakan dengan nilai 0). | 0, 5, 3 | Rating 0 menunjukkan interaksi implisit.         |
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
