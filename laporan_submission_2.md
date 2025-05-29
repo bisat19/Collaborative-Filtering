@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-Di era digital saat ini, jumlah informasi yang tersedia, termasuk dalam bentuk buku, telah meningkat secara eksponensial. Pembaca seringkali dihadapkan pada tantangan besar dalam menemukan buku yang benar-benar sesuai dengan preferensi dan minat mereka di antara jutaan pilihan yang ada [(Miriyala; et.al, 2025)(https://ijnrd.org/papers/IJNRD2503444.pdf)]. Metode pencarian tradisional atau penelusuran manual seringkali tidak efisien dan memakan waktu, menyebabkan pengguna mungkin melewatkan karya-karya yang relevan atau merasa kewalahan dengan banyaknya pilihan. Fenomena ini dikenal sebagai information overload, dan sistem rekomendasi hadir sebagai solusi untuk membantu pengguna menavigasi lautan informasi ini.
+Di era digital saat ini, jumlah informasi yang tersedia, termasuk dalam bentuk buku, telah meningkat secara eksponensial. Pembaca seringkali dihadapkan pada tantangan besar dalam menemukan buku yang benar-benar sesuai dengan preferensi dan minat mereka di antara jutaan pilihan yang ada [(Miriyala; et.al, 2025)](https://ijnrd.org/papers/IJNRD2503444.pdf). Metode pencarian tradisional atau penelusuran manual seringkali tidak efisien dan memakan waktu, menyebabkan pengguna mungkin melewatkan karya-karya yang relevan atau merasa kewalahan dengan banyaknya pilihan. Fenomena ini dikenal sebagai information overload, dan sistem rekomendasi hadir sebagai solusi untuk membantu pengguna menavigasi lautan informasi ini.
 
-Masalah kesulitan dalam pemilihan buku ini penting untuk diselesaikan karena berdampak langsung pada pengalaman membaca pengguna dan juga pada ekosistem literasi secara keseluruhan. Pengguna yang kesulitan menemukan buku yang menarik mungkin akan berkurang minat bacanya, sementara penulis dan penerbit buku-buku yang kurang populer (sering disebut sebagai long-tail items) mungkin kesulitan mendapatkan visibilitas yang layak. Sistem rekomendasi yang efektif dapat meningkatkan kepuasan pengguna dengan menyajikan pilihan yang lebih personal, mendorong penemuan buku-buku baru, dan membantu karya-karya yang beragam untuk menjangkau pembaca yang tepat [(Leukhong, 2025)(https://www.jisem-journal.com/index.php/journal/article/view/492)].
+Masalah kesulitan dalam pemilihan buku ini penting untuk diselesaikan karena berdampak langsung pada pengalaman membaca pengguna dan juga pada ekosistem literasi secara keseluruhan. Pengguna yang kesulitan menemukan buku yang menarik mungkin akan berkurang minat bacanya, sementara penulis dan penerbit buku-buku yang kurang populer (sering disebut sebagai long-tail items) mungkin kesulitan mendapatkan visibilitas yang layak. Sistem rekomendasi yang efektif dapat meningkatkan kepuasan pengguna dengan menyajikan pilihan yang lebih personal, mendorong penemuan buku-buku baru, dan membantu karya-karya yang beragam untuk menjangkau pembaca yang tepat [(Leukhong, 2025)](https://www.jisem-journal.com/index.php/journal/article/view/492).
 
 Proyek ini bertujuan untuk mengatasi masalah tersebut dengan merancang dan mengimplementasikan sistem rekomendasi buku menggunakan teknik collaborative filtering. Collaborative filtering adalah pendekatan yang populer dan terbukti efektif, yang bekerja dengan menganalisis pola perilaku dan preferensi dari banyak pengguna untuk membuat prediksi tentang minat seorang pengguna terhadap item yang belum pernah ia temui. 
 
@@ -12,31 +12,36 @@ Dengan memanfaatkan dataset Book-Crossings, yang berisi data rating buku dari se
 
 ## Business Understanding
 
-Pada bagian ini, Anda perlu menjelaskan proses klarifikasi masalah.
+Sistem rekomendasi merupakan salah satu komponen penting dalam banyak platform digital, termasuk e-commerce dan layanan berbasis konten. Dalam konteks platform rekomendasi buku, memahami preferensi pengguna menjadi kunci untuk meningkatkan keterlibatan pengguna dan kepuasan pelanggan.
 
-Bagian laporan ini mencakup:
-
+---
 ### Problem Statements
 
-Menjelaskan pernyataan masalah:
-- Pernyataan Masalah 1
-- Pernyataan Masalah 2
-- Pernyataan Masalah n
+1. **Pernyataan Masalah 1:** Bagaimana cara merekomendasikan buku yang relevan kepada pengguna berdasarkan interaksi pengguna lain yang serupa?
+2. **Pernyataan Masalah 2:** Bagaimana meningkatkan kualitas rekomendasi menggunakan metode collaborative filtering?
+3. **Pernyataan Masalah 3:** Bagaimana mengevaluasi performa sistem rekomendasi dengan metrik yang sesuai?
 
+---
 ### Goals
 
-Menjelaskan tujuan proyek yang menjawab pernyataan masalah:
-- Jawaban pernyataan masalah 1
-- Jawaban pernyataan masalah 2
-- Jawaban pernyataan masalah n
+Tujuan utama dari proyek ini adalah:
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
+- **Tujuan 1:** Membangun sistem rekomendasi buku yang memanfaatkan interaksi pengguna-pengguna lain (user-based collaborative filtering).
+Sistem akan memanfaatkan kesamaan antar pengguna untuk memberikan rekomendasi buku yang disukai pengguna-pengguna serupa.
+- **Tujuan 2:** Mengimplementasikan dan membandingkan dua pendekatan collaborative filtering: KNN dan SVD.
+Pendekatan ini memungkinkan sistem untuk memahami pola preferensi pengguna berdasarkan data historis.
+- **Tujuan 3:** Melakukan eksplorasi hasil rekomendasi dari dua pendekatan untuk mengetahui keunggulan masing-masing metode secara kualitatif.
+Perbandingan dilakukan dengan melihat hasil rekomendasi yang dihasilkan oleh masing-masing algoritma.
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menambahkan bagian “Solution Approach” yang menguraikan cara untuk meraih goals. Bagian ini dibuat dengan ketentuan sebagai berikut: 
+---
+### Solution Statements
 
-    ### Solution statements
-    - Mengajukan 2 atau lebih solution approach (algoritma atau pendekatan sistem rekomendasi).
+Untuk menjawab pertanyaan dan mencapai tujuan di atas, pendekatan solusi yang digunakan meliputi:
+
+1. **Solusi 1: Collaborative Filtering menggunakan K-Nearest Neighbors (KNN)**
+   Menggunakan algoritma KNN dari pustaka Surprise untuk menghitung kemiripan antar pengguna atau item berdasarkan rating buku.
+2. **Matrix Factorization menggunakan Singular Value Decomposition (SVD)**
+   Menggunakan pendekatan SVD untuk mengurai data rating ke dalam dimensi laten, memungkinkan prediksi rating bahkan pada data yang sangat sparse.
 
 ## Data Understanding
 Paragraf awal bagian ini menjelaskan informasi mengenai jumlah data, kondisi data, dan informasi mengenai data yang digunakan. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data).
