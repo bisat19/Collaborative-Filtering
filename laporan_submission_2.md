@@ -78,11 +78,12 @@ File ini berisi detail mengenai setiap buku.
 
 3. `BX-Book-Ratings.csv` - Informasi Rating Buku
 File ini berisi informasi rating yang diberikan oleh pengguna terhadap buku.
-| Nama Kolom   | Deskripsi                                                                                          | Contoh Nilai                       | Catatan                                           |
-|--------------|----------------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------|
-| User-ID      | ID unik pengguna yang memberikan rating (merujuk ke BX-Users.csv).                                | 276725, 276726                     | -                                                 |
-| ISBN         | ISBN buku yang dirating (merujuk ke BX-Books.csv).                                                | "034545104X", "0155061224"         | -                                                 |
-| Book-Rating  | Rating yang diberikan pengguna untuk buku. Rating bersifat eksplisit (skala 1-10, nilai lebih tinggi menunjukkan apresiasi lebih tinggi) atau implisit (dinyatakan dengan nilai 0). | 0, 5, 3 | Rating 0 menunjukkan interaksi implisit.         |
+| Nama Kolom    | Deskripsi                                                                                                               | Contoh Nilai                       | Catatan                                           |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|------------------------------------|---------------------------------------------------|
+| User-ID       | ID unik pengguna yang memberikan rating (merujuk ke BX-Users.csv).                                                      | 276725, 276726                     | -                                                 |
+| ISBN          | ISBN buku yang dirating (merujuk ke BX-Books.csv).                                                                      | "034545104X", "0155061224"         | -                                                 |
+| Book-Rating   | Rating yang diberikan pengguna untuk buku. Rating bersifat eksplisit (1-10) atau implisit (0).                          | 0, 5, 3                            | Rating 0 menunjukkan interaksi implisit.          |
+
 
 **Rubrik/Kriteria Tambahan (Opsional)**:
 - Melakukan beberapa tahapan yang diperlukan untuk memahami data, contohnya teknik visualisasi data beserta insight atau exploratory data analysis.
