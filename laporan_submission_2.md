@@ -128,9 +128,11 @@ Tujuan: Format ini dibutuhkan untuk perhitungan similarity antar item (item-base
 Data pengguna dibagi menjadi train_data dan test_data secara manual. Dalam hal ini data training dan data testing berbanding (80:20)
 Tujuannya agar bisa menghitung Precision@K dan simulasi sistem rekomendasi.
 
-### 5. Transformasi ke Format Library Surprise
-Dataset diubah menjadi format rating triplet (`User-ID`, `Book-Title`, `Rating`). Dibentuk dengan `Dataset.load_from_df(...)` menggunakan Reader dari library Surprise.
-Alasan: Ini memungkinkan digunakan untuk algoritma seperti SVD, KNNBasic, dsb.
+### 5. Transformasi ke Matriks Sparse
+Pivot table kemudian diubah ke dalam format matriks sparse menggunakan `csr_matrix` dari `scipy.sparse`. Alasan: Library seperti `NearestNeighbors` (KNN) dan `TruncatedSVD` dari Scikit-learn membutuhkan input dalam bentuk matriks sparse, agar komputasi lebih efisien terutama untuk dataset yang besar dan sparsity tinggi.
+
+### 6. Penanganan Duplikasi
+Dilakukan penghapusan data duplikat berdasarkan kombinasi kolom `User-ID` dan `Book-Title` untuk memastikan bahwa setiap pengguna hanya memberikan satu rating per buku. Alasan: Duplikasi bisa mengacaukan input model dengan memperkuat pengaruh suatu interaksi secara tidak proporsional.
 
 ## Modeling
 Pada bagian ini dilakukan proses pembangunan dan evaluasi model sistem rekomendasi. Model dibangun untuk memberikan Top-N Recommendation bagi setiap pengguna berdasarkan data rating buku. Dua pendekatan algoritma digunakan untuk membandingkan performa dan pendekatannya terhadap permasalahan.
